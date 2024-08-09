@@ -1,3 +1,11 @@
 {
-  "hi": "Hello!"
+  "hi": "Hello!",
+  "home": "Home",
+  "profile": "Profile",
+  "about": "About",
+  "keyword": "Keyword",
+  "location": "Location",
+  "search": "Search",
+  "login": "Login",
+  "register": "Register"
 }
