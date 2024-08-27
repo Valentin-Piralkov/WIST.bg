@@ -7,6 +7,7 @@ export default {
       gray: "#333333",
       white: "#FFFFFF",
       "blue-light": "#00B4D8",
+      "blue-dark": "#013552",
       orange: "#F45103"
     },
     fontFamily: {

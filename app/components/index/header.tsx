@@ -7,7 +7,7 @@ export default function IndexHeader() {
   return (
     <div className="flex flex-row items-center justify-center w-full h-[10vh] shadow-md">
       <div className="flex flex-row items-center justify-between w-10/12 h-full">
-        <img src="./uploads/index_logo.svg" alt="WIST.bg" className="h-[200%]" />
+        <img src="./uploads/Wist.bg.svg" alt="WIST.bg" className="h-[7vh]" />
         <a href="/" className="font-title font-normal text-xl underline">
           {t("home")}
         </a>

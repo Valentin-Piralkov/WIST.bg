@@ -7,5 +7,15 @@
   "location": "Местоположение",
   "search": "Търсене",
   "login": "Вход",
-  "register": "Регистрация"
+  "register": "Регистрация",
+  "contact_form": "Свържете се с нас",
+  "name": "Име",
+  "email": "Имейл",
+  "message": "Съобщение",
+  "submit": "Изпрати",
+  "fast_links": "Бързи линкове",
+  "frequently_asked_questions": "Често задавани въпроси",
+  "slogan": "Където талантът среща възможностите.",
+  "contact_email": "Имейл: wist@gmail.com",
+  "contact_phone": "Телефон: 0888 888 888"
 }

@@ -7,5 +7,15 @@
   "location": "Location",
   "search": "Search",
   "login": "Login",
-  "register": "Register"
+  "register": "Register",
+  "contact_form": "Get in touch",
+  "name": "Name",
+  "email": "Email",
+  "message": "Message",
+  "submit": "Submit",
+  "fast_links": "Fast Links",
+  "frequently_asked_questions": "Frequently Asked Questions",
+  "slogan": "Where talent meets possibilities.",
+  "contact_email": "Email: wist@gmail.com",
+  "contact_phone": "Phone: 0888 888 888"
 }
