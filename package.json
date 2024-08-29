@@ -2,7 +2,6 @@
   "name": "wist-bg",
   "private": true,
   "sideEffects": false,
-  "type": "module",
   "scripts": {
     "build": "npm run lint && remix vite:build",
     "dev": "remix vite:dev",
@@ -16,6 +15,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@prisma/client": "^5.18.0",
     "@remix-run/node": "^2.8.1",
     "@remix-run/react": "^2.8.1",
     "@remix-run/serve": "^2.8.1",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@remix-run/dev": "^2.8.1",
+    "@types/node": "^22.5.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -45,10 +46,16 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "postcss": "^8.4.35",
+    "prisma": "^5.18.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.1.6",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4",
     "vite": "^5.1.0",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "engines": {
     "node": ">=18.0.0"

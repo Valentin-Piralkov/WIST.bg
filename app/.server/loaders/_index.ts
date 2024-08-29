@@ -1,6 +1,7 @@
 import { LoaderFunctionArgs, json } from "@remix-run/node";
 import { getLocale } from "../getLocale";
 import { EmptyHelloMessage, HelloMessage } from "~/types/HelloMessage";
+import { db } from "~/lib/db";
 
 export async function l({ request }: LoaderFunctionArgs) {
   const locale = await getLocale(request);
@@ -14,9 +15,16 @@ export async function l({ request }: LoaderFunctionArgs) {
     helloMessage.message = searchParams.get("message") as string;
   }
 
+  const filters = await db.category.findMany({
+    include: {
+      options: true
+    }
+  });
+
   return json({
     locale,
     appURL: process.env.APP_URL,
-    helloMessage
+    helloMessage,
+    filters
   });
 }

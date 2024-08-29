@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    restart: always
+    image: postgres
+    volumes:
+      - ./prisma/db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: wist
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
