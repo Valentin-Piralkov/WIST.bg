@@ -6,8 +6,13 @@ import { useSwitchLanguage } from "~/hooks/useSwitchLanguage";
 import { useLangSearchParams } from "~/hooks/useLangSerachParams";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquareFacebook, faSquareInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
+
+import { SocialIcon } from "react-social-icons/component";
+import "react-social-icons/linkedin";
+import "react-social-icons/facebook";
+import "react-social-icons/instagram";
+import "react-social-icons/youtube";
 
 interface Props {
   actionData: ContactFormData | undefined;
@@ -29,30 +34,10 @@ export default function IndexFooter(props: Props) {
             <p className="text-white font-title text-l"> {t("contact_phone")} </p>
           </div>
           <div className="flex flex-row items-center justify-start gap-4">
-            <a
-              href="https://www.facebook.com/wist.bg"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-light text-3xl"
-            >
-              <FontAwesomeIcon icon={faSquareFacebook} />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/wist-bg"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-light text-3xl"
-            >
-              <FontAwesomeIcon icon={faLinkedin} />
-            </a>
-            <a
-              href="https://www.instagram.com/wist.bg"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-light text-3xl"
-            >
-              <FontAwesomeIcon icon={faSquareInstagram} />
-            </a>
+            <SocialIcon url="https://www.facebook.com/" network="facebook" bgColor="#00B4D8" />
+            <SocialIcon url="https://www.instagram.com/" network="instagram" bgColor="#00B4D8" />
+            <SocialIcon url="https://www.linkedin.com" network="linkedin" bgColor="#00B4D8" />
+            <SocialIcon url="https://www.youtube.com/" network="youtube" bgColor="#00B4D8" />
           </div>
         </div>
         <div className="flex flex-col items-start justify-between w-1/4 h-[25vh]">
