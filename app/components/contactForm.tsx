@@ -14,7 +14,7 @@ export default function ContactForm(props: Props) {
       <Form
         method="post"
         preventScrollReset
-        className="flex flex-col w-full items-center justify-between mt-8 self-start overflow-auto"
+        className="flex flex-col w-full items-center justify-between mt-8 self-start overflow-hidden"
       >
         <div className="flex flex-col w-full">
           <div className="flex flex-row gap-8 w-full">
