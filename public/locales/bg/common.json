@@ -19,7 +19,7 @@
   "contact_email": "Имейл: wist@gmail.com",
   "contact_phone": "Телефон: 0888 888 888",
   "clear_filters": "Изчисти филтрите",
-  "City": "Местоположение",
+  "City": "Град",
   "Sofia": "София",
   "Plovdiv": "Пловдив",
   "Varna": "Варна",
@@ -36,5 +36,18 @@
   "IT": "ИТ",
   "Engineering": "Инженерство",
   "Marketing": "Маркетинг",
-  "Other_Field": "Други сфери"
+  "Other_Field": "Други сфери",
+  "deadline": "Краен срок",
+  "apply": "Кандидатствай",
+  "description": "Описание",
+  "lv": "лв.",
+  "h": "ч.",
+  "DAY": "/ден",
+  "WEEK": "/седмица",
+  "HOURLY": "/час",
+  "MONTHLY": "/месец",
+  "WEEKLY": "/седмица",
+  "DAILY": "/ден",
+  "YEARLY": "/година",
+  "TOTAL": " общо"
 }

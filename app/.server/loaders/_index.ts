@@ -21,10 +21,27 @@ export async function l({ request }: LoaderFunctionArgs) {
     }
   });
 
+  const users = await db.user.findMany({
+    omit: {
+      password: true
+    }
+  });
+
+  const companies = await db.company.findMany({
+    omit: {
+      password: true
+    },
+    include: {
+      internships: true
+    }
+  });
+
   return json({
     locale,
     appURL: process.env.APP_URL,
     helloMessage,
-    filters
+    filters,
+    users,
+    companies
   });
 }

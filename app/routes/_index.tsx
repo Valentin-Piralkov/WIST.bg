@@ -12,7 +12,6 @@ export const action = contactFormAction;
 export default function Index() {
   const data = useLoaderData<typeof loader>();
   const actionData = useActionData<typeof action>();
-  console.log(data);
 
   return (
     <div className="flex flex-col justify-between min-h-[100vh] h-full w-full bg-white gap-20">
@@ -22,11 +21,11 @@ export default function Index() {
           <IndexFilters filters={data.filters} />
         </div>
         <div className="flex flex-col w-3/4 justify-start gap-8">
-          <IndexCard />
-          <IndexCard />
-          <IndexCard />
-          <IndexCard />
-          <IndexCard />
+          {data.companies.map((company) =>
+            company.internships.map((internship) => (
+              <IndexCard key={internship.id} companyName={company.name} internship={internship} />
+            ))
+          )}
         </div>
       </div>
       <IndexFooter actionData={actionData} />

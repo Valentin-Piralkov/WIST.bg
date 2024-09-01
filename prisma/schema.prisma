@@ -5,13 +5,131 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  seed     = "ts-node ./prisma/seed.ts"
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitAPI"]
+  seed            = "ts-node ./prisma/seed.ts"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String            @id @default(cuid())
+  firstName        String
+  lastName         String
+  email            String            @unique
+  emailVerified    Boolean           @default(false)
+  password         String
+  phone            String            @unique
+  occupation       String?
+  linkedinProfile  String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  activationTokens ActivationToken[]
+  resetTokens      ResetToken[]
+}
+
+model Company {
+  id                      String                   @id @default(cuid())
+  name                    String                   @unique
+  email                   String                   @unique
+  emailVerified           Boolean                  @default(false)
+  phone                   String                   @unique
+  password                String
+  description             String?
+  logo                    String?
+  website                 String?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  internships             Internship[]
+  companyResetTokens      CompanyResetToken[]
+  companyActivationTokens CompanyActivationToken[]
+}
+
+enum SalaryRate {
+  HOURLY
+  DAILY
+  WEEKLY
+  MONTHLY
+  YEARLY
+  TOTAL
+}
+
+enum hoursRate {
+  DAY
+  WEEK
+}
+
+enum Type {
+  REMOTE
+  HYBRID
+  ONSITE
+}
+
+model Internship {
+  id          String     @id @default(cuid())
+  title       String
+  description String
+  location    String // city
+  duration    Int // in months
+  salary      Int // in BGN
+  salaryRate  SalaryRate @default(MONTHLY)
+  hours       Int // per Day or Week
+  hoursRate   hoursRate  @default(DAY)
+  deadline    DateTime
+  type        Type       @default(ONSITE)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  Company     Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId   String
+}
+
+// for email verification (expiration 24h)
+model ActivationToken {
+  id           String    @id @default(uuid())
+  token        String    @unique
+  created_at   DateTime  @default(now())
+  activated_at DateTime?
+
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+}
+
+// for password reset (no expiration 24h)
+model ResetToken {
+  id           String    @id @default(uuid())
+  token        String    @unique
+  reset_code   String
+  created_at   DateTime  @default(now())
+  activated_at DateTime?
+
+  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+}
+
+// for company email verification (expiration 24h)
+model CompanyActivationToken {
+  id           String    @id @default(uuid())
+  token        String    @unique
+  created_at   DateTime  @default(now())
+  activated_at DateTime?
+
+  company    Company @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  company_id String
+}
+
+// for company password reset (no expiration 24h)
+model CompanyResetToken {
+  id           String    @id @default(uuid())
+  token        String    @unique
+  reset_code   String
+  created_at   DateTime  @default(now())
+  activated_at DateTime?
+
+  company    Company @relation(fields: [company_id], references: [id], onDelete: Cascade)
+  company_id String
 }
 
 model Category {

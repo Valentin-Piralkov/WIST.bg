@@ -19,7 +19,7 @@
   "contact_email": "Email: wist@gmail.com",
   "contact_phone": "Phone: 0888 888 888",
   "clear_filters": "Clear filters",
-  "City": "Location",
+  "City": "City",
   "Sofia": "Sofia",
   "Plovdiv": "Plovdiv",
   "Varna": "Varna",
@@ -36,5 +36,18 @@
   "IT": "IT",
   "Engineering": "Engineering",
   "Marketing": "Marketing",
-  "Other_Field": "Other fields"
+  "Other_Field": "Other fields",
+  "deadline": "Deadline",
+  "apply": "Apply",
+  "description": "Description",
+  "lv": "lv.",
+  "h": "h.",
+  "DAY": "/day",
+  "WEEK": "/week",
+  "HOURLY": "/hour",
+  "MONTHLY": "/month",
+  "WEEKLY": "/week",
+  "DAILY": "/day",
+  "YEARLY": "/year",
+  "TOTAL": " total"
 }

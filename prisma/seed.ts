@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { hoursRate, PrismaClient, SalaryRate } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -52,10 +52,123 @@ async function filters() {
   });
 }
 
+async function addDummyCompaniesAndInternships() {
+  const company1 = await prisma.company.create({
+    data: {
+      name: "BoxNow",
+      email: "boxnow@gmail.com",
+      emailVerified: true,
+      phone: "0888888888",
+      password: "123456",
+      description: "BoxNow description"
+    }
+  });
+
+  const company2 = await prisma.company.create({
+    data: {
+      name: "Vivacom",
+      email: "vivacom@gmail.com",
+      emailVerified: true,
+      phone: "0888888887",
+      password: "123456",
+      description: "Vivacom description"
+    }
+  });
+
+  const company3 = await prisma.company.create({
+    data: {
+      name: "Telerik Academy",
+      email: "telerik@gmail.com",
+      emailVerified: true,
+      phone: "0888888886",
+      password: "123456",
+      description: "Telerik description"
+    }
+  });
+
+  await prisma.internship.create({
+    data: {
+      title: "Factory Worker (8 hours)",
+      description: "Internship1 description",
+      location: "Sofia",
+      duration: 0,
+      salary: 16,
+      salaryRate: SalaryRate.HOURLY,
+      hours: 8,
+      hoursRate: hoursRate.DAY,
+      deadline: new Date(2024, 10, 14),
+      companyId: company1.id
+    }
+  });
+
+  await prisma.internship.create({
+    data: {
+      title: "Customer Support (Summer Internship)",
+      description: "Internship2 description",
+      location: "Sofia",
+      duration: 3,
+      salary: 700,
+      salaryRate: SalaryRate.MONTHLY,
+      hours: 8,
+      hoursRate: hoursRate.DAY,
+      deadline: new Date(2025, 4, 1),
+      companyId: company2.id
+    }
+  });
+
+  await prisma.internship.create({
+    data: {
+      title: "Software Developer (Part-Time)",
+      description: "Internship3 description",
+      location: "Plodiv",
+      duration: 6,
+      salary: 1200,
+      salaryRate: SalaryRate.MONTHLY,
+      hours: 4,
+      hoursRate: hoursRate.DAY,
+      deadline: new Date(2024, 10, 1),
+      companyId: company3.id
+    }
+  });
+}
+
+async function addDummyUsers() {
+  await prisma.user.create({
+    data: {
+      firstName: "Nikolay",
+      lastName: "Nikolov",
+      email: "user1@gmail.com",
+      emailVerified: false,
+      password: "123456",
+      phone: "0888888875",
+      occupation: "Student",
+      linkedinProfile: "https://www.linkedin.com/in/nikolay-nikolov-1a2b3c4d5e6f"
+    }
+  });
+
+  await prisma.user.create({
+    data: {
+      firstName: "Ivan",
+      lastName: "Lozanov",
+      email: "user2@gmail.com",
+      emailVerified: true,
+      phone: "0888888876",
+      password: "123456",
+      occupation: "Student"
+    }
+  });
+}
+
 async function main() {
   console.log("Adding filters...");
   await filters();
   console.log("Filters added!");
+  console.log("Adding dummy companies and internships...");
+  await addDummyCompaniesAndInternships();
+  console.log("Dummy companies and internships added!");
+  console.log("Adding dummy users...");
+  await addDummyUsers();
+  console.log("Dummy users added!");
 }
 
 main()
