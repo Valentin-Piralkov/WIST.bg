@@ -49,5 +49,10 @@
   "WEEKLY": "/седмица",
   "DAILY": "/ден",
   "YEARLY": "/година",
-  "TOTAL": " общо"
+  "TOTAL": " общо",
+  "create_profile": "Създай  нов профил",
+  "create_profile_text": "Вече имаш акаунт?",
+  "login_text": "Влез",
+  "looking_for_work": "Аз търся работа",
+  "offering_work": "Аз предлагам работни места"
 }

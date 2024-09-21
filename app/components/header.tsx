@@ -1,8 +1,14 @@
 import { useTranslation } from "react-i18next";
 import IndexSearchBar from "./searchBar";
+import { useNavigate } from "@remix-run/react";
 
 export default function IndexHeader() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleRegistrationClick = () => {
+    navigate("/register");
+  };
 
   return (
     <div className="flex flex-row items-center justify-center w-full h-[10vh] shadow-md">
@@ -21,7 +27,10 @@ export default function IndexHeader() {
         <a href="/login" className="font-title font-normal text-xl hover:underline">
           {t("login")}
         </a>
-        <button className="bg-blue-light text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline">
+        <button
+          className="bg-blue-light text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline"
+          onClick={handleRegistrationClick}
+        >
           {t("register")}
         </button>
       </div>
