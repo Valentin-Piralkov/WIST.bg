@@ -54,5 +54,22 @@
   "create_profile_text": "Already have an account?",
   "login_text": "Log in",
   "looking_for_work": "I am looking for work",
-  "offering_work": "I am offering work"
+  "offering_work": "I am offering work",
+  "password": "Password",
+  "create_password": "Create password",
+  "repeat_password": "Repeat password",
+  "phone": "Phone",
+  "first_last_name": "First and last name",
+  "first_last_name_placeholder": "Please enter your first and last name",
+  "email_placeholder": "Please enter your email",
+  "password_placeholder": "Please enter your password",
+  "repeat_password_placeholder": "Please confirm your password",
+  "phone_placeholder": "Please enter your phone number",
+  "register_button": "Create profile",
+  "by_clicking": "By creating your profile, you agree to our",
+  "terms_and_conditions": "Terms of use",
+  "and": "and",
+  "privacy_policy": "Privacy Policy",
+  "or_continue_with": "Or continue with",
+  "password_instructions": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number and one special character."
 }

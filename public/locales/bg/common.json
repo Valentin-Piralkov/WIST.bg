@@ -54,5 +54,22 @@
   "create_profile_text": "Вече имаш акаунт?",
   "login_text": "Влез",
   "looking_for_work": "Аз търся работа",
-  "offering_work": "Аз предлагам работни места"
+  "offering_work": "Аз предлагам работни места",
+  "password": "Парола",
+  "create_password": "Създай парола",
+  "repeat_password": "Потвърди парола",
+  "phone": "Телефон",
+  "first_last_name": "Име и фамилия",
+  "first_last_name_placeholder": "Моля, въведете вашето име и фамилия",
+  "email_placeholder": "Моля, въведете вашия имейл",
+  "password_placeholder": "Моля, въведете вашата парола",
+  "repeat_password_placeholder": "Моля, повторете вашата парола",
+  "phone_placeholder": "Моля, въведете вашия телефон",
+  "register_button": "Създай профил",
+  "by_clicking": "Създавайки вашия профил, вие се съгласявате с нашите",
+  "terms_and_conditions": "Условия за ползване",
+  "and": "и",
+  "privacy_policy": "Политика за поверителност",
+  "or_continue_with": "Или продължете с",
+  "password_instructions": "Паролата трябва да съдържа поне 8 символа, една главна буква, една малка буква и една цифра."
 }
