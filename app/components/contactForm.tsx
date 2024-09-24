@@ -1,17 +1,16 @@
-import { Form } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
-import { ContactFormData } from "~/.server/actions/index/contactForm";
+import { action } from "~/routes/contact";
 
-interface Props {
-  actionData: ContactFormData | undefined;
-}
-
-export default function ContactForm(props: Props) {
+export default function ContactForm() {
+  const actionData = useActionData<typeof action>();
   const { t } = useTranslation();
+
   return (
     <div className="w-full flex flex-col justify-start h-full">
       <div className="text-2xl text-white font-title"> {t("contact_form")} </div>
       <Form
+        action="/contact"
         method="post"
         preventScrollReset
         className="flex flex-col w-full items-center justify-between mt-8 self-start overflow-hidden"
@@ -45,8 +44,8 @@ export default function ContactForm(props: Props) {
             required
             className="text-l w-full h-[10vh] rounded-md mt-8 px-4 py-2 font-title font-normal focus:outline-none resize-none"
           />
-          {props.actionData?.ok && <div className="text-xl">{props.actionData.message.message}</div>}
-          {props.actionData?.ok === false && <div className="text-xl text-[#ff3333]">{props.actionData.message}</div>}
+          {actionData?.ok && <div className="text-xl">{actionData.message.message}</div>}
+          {actionData?.ok === false && <div className="text-xl text-[#ff3333]">{actionData.message}</div>}
         </div>
       </Form>
     </div>

@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import ContactForm from "./contactForm";
-import { ContactFormData } from "~/.server/actions/index/contactForm";
 import { SUPPORTED_LOCALES } from "~/i18n";
 import { useSwitchLanguage } from "~/hooks/useSwitchLanguage";
 import { useLangSearchParams } from "~/hooks/useLangSerachParams";
@@ -14,11 +13,7 @@ import "react-social-icons/facebook";
 import "react-social-icons/instagram";
 import "react-social-icons/youtube";
 
-interface Props {
-  actionData: ContactFormData | undefined;
-}
-
-export default function IndexFooter(props: Props) {
+export default function IndexFooter() {
   const { t } = useTranslation();
   const switchLanguage = useSwitchLanguage();
   const langSearchParams = useLangSearchParams().get("lang") || "bg"; // language defaults to bg
@@ -67,7 +62,7 @@ export default function IndexFooter(props: Props) {
           </div>
         </div>
         <div className="flex flex-col w-2/4 h-[25vh]">
-          <ContactForm actionData={props.actionData} />
+          <ContactForm />
         </div>
       </div>
       <div className="flex flex-col items-center justify-center w-10/12 h-1/6 gap-4">

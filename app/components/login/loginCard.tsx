@@ -8,11 +8,8 @@ export default function UserLoginCard() {
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    phone: "",
-    password: "",
-    repeat_password: ""
+    password: ""
   });
 
   // Handler to update the form data as the user types
@@ -25,12 +22,7 @@ export default function UserLoginCard() {
   };
 
   // Check if all fields are filled
-  const isFormValid =
-    formData.name !== "" &&
-    formData.email !== "" &&
-    formData.phone !== "" &&
-    formData.password !== "" &&
-    formData.repeat_password !== "";
+  const isFormValid = formData.email !== "" && formData.password !== "";
 
   // Handler to toggle password visibility
   const togglePasswordVisibility = () => {
@@ -93,6 +85,19 @@ export default function UserLoginCard() {
             </button>
           </div>
           <p className="text-xs text-right hover:underline mt-2">{t("forgot_password")}</p>
+        </div>
+
+        <div className="flex flex-row gap-2 items-center">
+          <input
+            type="checkbox"
+            name="remember_me"
+            defaultChecked={false}
+            id="remember_me"
+            className="size-5 rounded-md text-orange accent-orange focus:ring-0"
+          />
+          <label htmlFor="remember_me" className="block text-sm font-medium">
+            {t("remember_me")}
+          </label>
         </div>
 
         <button
