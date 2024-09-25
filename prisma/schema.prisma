@@ -16,7 +16,7 @@ datasource db {
 }
 
 model User {
-  id               String            @id @default(cuid())
+  id               Int               @id @default(autoincrement())
   firstName        String
   lastName         String
   email            String            @unique
@@ -32,7 +32,7 @@ model User {
 }
 
 model Company {
-  id                      String                   @id @default(cuid())
+  id                      Int                      @id @default(autoincrement())
   name                    String                   @unique
   email                   String                   @unique
   emailVerified           Boolean                  @default(false)
@@ -69,8 +69,9 @@ enum Type {
 }
 
 model Internship {
-  id          String     @id @default(cuid())
+  id          Int        @id @default(autoincrement())
   title       String
+  slug        String     @unique
   description String
   location    String // city
   duration    Int // in months
@@ -83,7 +84,7 @@ model Internship {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   Company     Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  companyId   String
+  companyId   Int
 }
 
 // for email verification (expiration 24h)
@@ -93,8 +94,8 @@ model ActivationToken {
   created_at   DateTime  @default(now())
   activated_at DateTime?
 
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
+  user    User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id Int
 }
 
 // for password reset (no expiration 24h)
@@ -105,8 +106,8 @@ model ResetToken {
   created_at   DateTime  @default(now())
   activated_at DateTime?
 
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
+  user    User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id Int
 }
 
 // for company email verification (expiration 24h)
@@ -117,7 +118,7 @@ model CompanyActivationToken {
   activated_at DateTime?
 
   company    Company @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  company_id String
+  company_id Int
 }
 
 // for company password reset (no expiration 24h)
@@ -129,7 +130,7 @@ model CompanyResetToken {
   activated_at DateTime?
 
   company    Company @relation(fields: [company_id], references: [id], onDelete: Cascade)
-  company_id String
+  company_id Int
 }
 
 model Category {

@@ -76,5 +76,12 @@
   "login_button": "Log in",
   "dont_have_account": "Don't have an account?",
   "remember_me": "Remember me",
-  "logout": "Logout"
+  "logout": "Logout",
+  "ONSITE": "Onsite work",
+  "REMOTE": "Remote work",
+  "HYBRID": "Hybrid work",
+  "long_term": "Long-term work",
+  "months": "months",
+  "apply_with_wist": "Apply with Wist",
+  "save": "Save"
 }

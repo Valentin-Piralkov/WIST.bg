@@ -89,6 +89,7 @@ async function addDummyCompaniesAndInternships() {
   await prisma.internship.create({
     data: {
       title: "Factory Worker (8 hours)",
+      slug: "factory-worker-8-hours-1",
       description: "Internship1 description",
       location: "Sofia",
       duration: 0,
@@ -104,6 +105,7 @@ async function addDummyCompaniesAndInternships() {
   await prisma.internship.create({
     data: {
       title: "Customer Support (Summer Internship)",
+      slug: "customer-support-summer-internship-2",
       description: "Internship2 description",
       location: "Sofia",
       duration: 3,
@@ -119,6 +121,7 @@ async function addDummyCompaniesAndInternships() {
   await prisma.internship.create({
     data: {
       title: "Software Developer (Part-Time)",
+      slug: "software-developer-part-time-3",
       description: "Internship3 description",
       location: "Plodiv",
       duration: 6,

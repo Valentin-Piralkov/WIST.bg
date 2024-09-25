@@ -1,7 +1,7 @@
 import { Internship } from "./JobTypes";
 
 export type User = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -12,7 +12,7 @@ export type User = {
 };
 
 export type Company = {
-  id: string;
+  id: number;
   name: string;
   email: string;
   emailVerified: boolean;

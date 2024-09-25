@@ -6,3 +6,11 @@ export const dateToShortString = (date: string): string => {
 
   return "".concat(d, "-").concat(m, "-").concat(y);
 };
+
+export const generateSlug = (title: string, id: number): string => {
+  const slug = title
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^a-zA-Z0-9-]/g, "");
+  return "".concat(slug, "-").concat(id.toString());
+};

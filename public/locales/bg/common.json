@@ -76,5 +76,12 @@
   "login_button": "Влез",
   "dont_have_account": "Нямате акаунт?",
   "remember_me": "Запомни ме",
-  "logout": "Изход"
+  "logout": "Изход",
+  "ONSITE": "Работа от офис",
+  "REMOTE": "Работа от вкъщи",
+  "HYBRID": "Хибридна работа",
+  "long_term": "Дългосрочна работа",
+  "months": "месеца",
+  "apply_with_wist": "Кандидатствай с Wist",
+  "save": "Запази"
 }

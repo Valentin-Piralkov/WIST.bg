@@ -1,8 +1,9 @@
 import { hoursRate, SalaryRate, Type } from "@prisma/client";
 
 export type Internship = {
-  id: string;
+  id: number;
   title: string;
+  slug: string;
   description: string;
   location: string;
   duration: number;
@@ -12,5 +13,5 @@ export type Internship = {
   hoursRate: hoursRate;
   deadline: string;
   type: Type;
-  companyId: string;
+  companyId: number;
 };

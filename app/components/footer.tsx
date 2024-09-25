@@ -24,7 +24,7 @@ export default function IndexFooter() {
     <div className="flex flex-col items-center justify-center w-full h-[40vh] shadow-md bg-blue-dark">
       <div className="flex flex-row items-center gap-4 justify-between w-10/12 h-5/6">
         <div className="flex flex-col items-start justify-between w-1/4 h-[25vh] overflow-auto">
-          <img src="./uploads/Wist-White.svg" alt="WIST.bg" className="h-[5vh] text-white" />
+          <img src="/uploads/Wist-White.svg" alt="WIST.bg" className="h-[5vh] text-white" />
           <div className="flex flex-col justify-start gap-2">
             <p className="text-white font-title text-l"> {t("slogan")} </p>
             <p className="text-white font-title text-l"> {t("contact_email")} </p>

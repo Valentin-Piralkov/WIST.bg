@@ -13,16 +13,16 @@ interface Props {
 export default function IndexCard({ companyName, internship }: Props) {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col px-8 py-6 w-full h-[25vh] rounded-md border border-gray-light font-title font-medium text-xl">
+    <div className="flex flex-col px-8 py-6 w-full h-64 justify-between rounded-md border border-gray-light font-title font-medium text-xl">
       <div className="flex flex-row h-1/4 w-full justify-between">
-        <a href={`/job_offer?id=${internship.id}`}>
-          <p>{internship.title}</p>
+        <a href={`/job_offer/${internship.slug}`}>
+          <h3>{internship.title}</h3>
         </a>
         <FontAwesomeIcon icon={faBookmark} className="h-full" />
       </div>
-      <div className="flex flex-row h-3/4 w-full justify-start gap-16">
+      <div className="flex flex-row h-3/4 w-full justify-between">
         <div className="flex flex-col w-40 h-40 justify-center items-center">
-          <img src="./uploads/Wist-full.svg" alt="WIST logo" />
+          <img src="/uploads/Wist-full.svg" alt="WIST logo" />
         </div>
         <div className="flex flex-col w-2/3 h-full justify-between">
           <span className="text-orange">{companyName}</span>
