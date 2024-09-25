@@ -1,7 +1,11 @@
+import { useSearchParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 
 export default function RegisterCard() {
   const { t } = useTranslation();
+
+  const [searchParams] = useSearchParams();
+
   return (
     <div className="flex flex-col px-8 py-6 w-1/3 h-[40vh] justify-between items-center font-title font-medium text-xl">
       <div className="flex flex-col w-full h-[10vh] justify-center items-center">
@@ -15,12 +19,12 @@ export default function RegisterCard() {
         </div>
       </div>
       <div className="flex flex-col w-full justify-center items-center gap-4">
-        <a href="/register_user" className="w-full">
+        <a href={`/register_user?${searchParams.toString()}`} className="w-full">
           <button className="w-full h-[5vh] bg-blue-light text-white px-4 py-2 rounded-md font-title font-normal text-xl hover:underline">
             {t("looking_for_work")}
           </button>
         </a>
-        <a href="/" className="w-full">
+        <a href={`/register?${searchParams.toString()}`} className="w-full">
           <button className="w-full h-[5vh] bg-orange text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline">
             {t("offering_work")}
           </button>

@@ -15,7 +15,9 @@ export default function IndexCard({ companyName, internship }: Props) {
   return (
     <div className="flex flex-col px-8 py-6 w-full h-[25vh] rounded-md border border-gray-light font-title font-medium text-xl">
       <div className="flex flex-row h-1/4 w-full justify-between">
-        <p>{internship.title}</p>
+        <a href={`/job_offer?id=${internship.id}`}>
+          <p>{internship.title}</p>
+        </a>
         <FontAwesomeIcon icon={faBookmark} className="h-full" />
       </div>
       <div className="flex flex-row h-3/4 w-full justify-start gap-16">

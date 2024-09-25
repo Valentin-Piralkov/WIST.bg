@@ -9,6 +9,11 @@ export function useSwitchLanguage() {
 
     const newParams = new URLSearchParams();
     newParams.set("lang", lang);
+    for (const [key, value] of searchParams.entries()) {
+      if (key !== "lang") {
+        newParams.set(key, value);
+      }
+    }
     setSearchParams(newParams, { preventScrollReset: true });
   }
 

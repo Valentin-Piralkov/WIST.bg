@@ -2,7 +2,7 @@ import { l } from "~/.server/loaders/_index";
 import IndexHeader from "~/components/header";
 import IndexFooter from "~/components/footer";
 import IndexFilters from "~/components/index/side-menu/filters";
-import IndexCard from "~/components/index/card";
+import IndexCard from "~/components/index/indexJobCard";
 import { useLoaderData } from "@remix-run/react";
 
 export const loader = l;

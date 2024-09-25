@@ -11,15 +11,16 @@ import { ActionFunctionArgs, redirect } from "@remix-run/node";
 
 export async function loginAction({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
-  const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
+  const remember_me = formData.get("remember_me");
 
-  if (!name || !email || !password) {
+  if (!email || !password) {
     return redirect("/register?error=Please fill in all fields");
   }
 
   console.log("User logged in with email:", email);
+  console.log("Remember me:", remember_me);
 
   // Perform any validation or user creation logic here
   // For example, you might create a user in Firebase:

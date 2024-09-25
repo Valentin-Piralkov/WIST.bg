@@ -74,5 +74,7 @@
   "password_instructions": "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number and one special character.",
   "forgot_password": "Forgot password?",
   "login_button": "Log in",
-  "dont_have_account": "Don't have an account?"
+  "dont_have_account": "Don't have an account?",
+  "remember_me": "Remember me",
+  "logout": "Logout"
 }

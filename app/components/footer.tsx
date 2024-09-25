@@ -12,11 +12,13 @@ import "react-social-icons/linkedin";
 import "react-social-icons/facebook";
 import "react-social-icons/instagram";
 import "react-social-icons/youtube";
+import { useSearchParams } from "@remix-run/react";
 
 export default function IndexFooter() {
   const { t } = useTranslation();
   const switchLanguage = useSwitchLanguage();
   const langSearchParams = useLangSearchParams().get("lang") || "bg"; // language defaults to bg
+  const [searchParams] = useSearchParams();
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-[40vh] shadow-md bg-blue-dark">
@@ -37,15 +39,15 @@ export default function IndexFooter() {
         </div>
         <div className="flex flex-col items-start justify-between w-1/4 h-[25vh]">
           <div className="text-2xl text-white self-start font-title"> {t("fast_links")} </div>
-          <a href={`/?lang=${langSearchParams}`} className="font-title font-bold text-l text-white">
+          <a href={`/?${searchParams.toString()}`} className="font-title font-bold text-l text-white">
             {" "}
             {t("home")}{" "}
           </a>
-          <a href="/profile" className="font-title font-bold text-l text-white">
+          <a href={`/profile?${searchParams.toString()}`} className="font-title font-bold text-l text-white">
             {" "}
             {t("about")}{" "}
           </a>
-          <a href="/about" className="font-title font-bold text-l text-white">
+          <a href={`/about?${searchParams.toString()}`} className="font-title font-bold text-l text-white">
             {" "}
             {t("frequently_asked_questions")}{" "}
           </a>
