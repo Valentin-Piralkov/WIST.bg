@@ -21,9 +21,9 @@ export default function IndexFooter() {
   const [searchParams] = useSearchParams();
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-[40vh] shadow-md bg-blue-dark">
+    <div className="flex flex-col items-center justify-center w-full h-96 shadow-md bg-blue-dark">
       <div className="flex flex-row items-center gap-4 justify-between w-10/12 h-5/6">
-        <div className="flex flex-col items-start justify-between w-1/4 h-[25vh] overflow-auto">
+        <div className="flex flex-col items-start justify-between w-1/4 h-64 overflow-auto">
           <img src="/uploads/Wist-White.svg" alt="WIST.bg" className="h-[5vh] text-white" />
           <div className="flex flex-col justify-start gap-2">
             <p className="text-white font-title text-l"> {t("slogan")} </p>
@@ -37,7 +37,7 @@ export default function IndexFooter() {
             <SocialIcon url="https://www.youtube.com/" network="youtube" bgColor="#00B4D8" />
           </div>
         </div>
-        <div className="flex flex-col items-start justify-between w-1/4 h-[25vh]">
+        <div className="flex flex-col items-start justify-between w-1/4 h-64">
           <div className="text-2xl text-white self-start font-title"> {t("fast_links")} </div>
           <a href={`/?${searchParams.toString()}`} className="font-title font-bold text-l text-white">
             {" "}
@@ -63,7 +63,7 @@ export default function IndexFooter() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col w-2/4 h-[25vh]">
+        <div className="flex flex-col w-2/4 h-64">
           <ContactForm />
         </div>
       </div>
