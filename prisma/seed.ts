@@ -3,38 +3,6 @@ import { hoursRate, PrismaClient, SalaryRate } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function filters() {
-  const category_city = await prisma.category.create({
-    data: {
-      label: "City"
-    }
-  });
-
-  await prisma.filterOption.createMany({
-    data: [
-      { label: "Sofia", value: false, categoryId: category_city.id },
-      { label: "Varna", value: false, categoryId: category_city.id },
-      { label: "Burgas", value: false, categoryId: category_city.id },
-      { label: "Plodiv", value: false, categoryId: category_city.id },
-      { label: "Other_City", value: false, categoryId: category_city.id }
-    ]
-  });
-
-  const category_type = await prisma.category.create({
-    data: {
-      label: "Type"
-    }
-  });
-
-  await prisma.filterOption.createMany({
-    data: [
-      { label: "Internship", value: false, categoryId: category_type.id },
-      { label: "Part-Time", value: false, categoryId: category_type.id },
-      { label: "Erasm", value: false, categoryId: category_type.id },
-      { label: "Study_Abroad", value: false, categoryId: category_type.id },
-      { label: "Summer", value: false, categoryId: category_type.id }
-    ]
-  });
-
   const category_field = await prisma.category.create({
     data: {
       label: "Field"
@@ -43,11 +11,84 @@ async function filters() {
 
   await prisma.filterOption.createMany({
     data: [
+      { label: "Law", value: false, categoryId: category_field.id },
+      { label: "Government", value: false, categoryId: category_field.id },
       { label: "IT", value: false, categoryId: category_field.id },
       { label: "Business", value: false, categoryId: category_field.id },
       { label: "Marketing", value: false, categoryId: category_field.id },
+      { label: "Design", value: false, categoryId: category_field.id },
+      { label: "Medical", value: false, categoryId: category_field.id },
+      { label: "Finance", value: false, categoryId: category_field.id },
+      { label: "Education", value: false, categoryId: category_field.id },
       { label: "Engineering", value: false, categoryId: category_field.id },
+      { label: "Logistics", value: false, categoryId: category_field.id },
+      { label: "Contractor", value: false, categoryId: category_field.id },
+      { label: "NGO", value: false, categoryId: category_field.id },
+      { label: "Culture", value: false, categoryId: category_field.id },
+      { label: "Ecology", value: false, categoryId: category_field.id },
       { label: "Other_Field", value: false, categoryId: category_field.id }
+    ]
+  });
+
+  const category_internship_type = await prisma.category.create({
+    data: {
+      label: "internship_type"
+    }
+  });
+
+  await prisma.filterOption.createMany({
+    data: [
+      { label: "Year_Intern", value: false, categoryId: category_internship_type.id },
+      { label: "Month_Intern", value: false, categoryId: category_internship_type.id },
+      { label: "Summer_Intern", value: false, categoryId: category_internship_type.id },
+      { label: "Remote_Intern", value: false, categoryId: category_internship_type.id },
+      { label: "Abroad_Intern", value: false, categoryId: category_internship_type.id },
+      { label: "Other_Intern", value: false, categoryId: category_internship_type.id }
+    ]
+  });
+
+  const category_salary_rate = await prisma.category.create({
+    data: {
+      label: "salary_rate"
+    }
+  });
+
+  await prisma.filterOption.createMany({
+    data: [
+      { label: "Paid", value: false, categoryId: category_salary_rate.id },
+      { label: "Unpaid", value: false, categoryId: category_salary_rate.id }
+    ]
+  });
+
+  const category_hours_rate = await prisma.category.create({
+    data: {
+      label: "internship_hours"
+    }
+  });
+
+  await prisma.filterOption.createMany({
+    data: [
+      { label: "1-3", value: false, categoryId: category_hours_rate.id },
+      { label: "3-6", value: false, categoryId: category_hours_rate.id },
+      { label: "6-8", value: false, categoryId: category_hours_rate.id }
+    ]
+  });
+
+  const category_language = await prisma.category.create({
+    data: {
+      label: "language"
+    }
+  });
+
+  await prisma.filterOption.createMany({
+    data: [
+      { label: "Bulgarian", value: false, categoryId: category_language.id },
+      { label: "English", value: false, categoryId: category_language.id },
+      { label: "German", value: false, categoryId: category_language.id },
+      { label: "French", value: false, categoryId: category_language.id },
+      { label: "Spanish", value: false, categoryId: category_language.id },
+      { label: "Russian", value: false, categoryId: category_language.id },
+      { label: "Other_Language", value: false, categoryId: category_language.id }
     ]
   });
 }
@@ -90,7 +131,18 @@ async function addDummyCompaniesAndInternships() {
     data: {
       title: "Factory Worker (8 hours)",
       slug: "factory-worker-8-hours-1",
-      description: "Internship1 description",
+      description: `<h2>Заглавие на първата секция</h2>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите.</p>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите. Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове.</p>
+                    <br>
+                    <ul>
+                      <li>това е точка от лист</li>
+                      <li>това е втора такава</li>
+                      <li>това е трета</li>
+                      <li>и четвърта</li>
+                    </ul>`,
       location: "Sofia",
       duration: 0,
       salary: 16,
@@ -106,7 +158,18 @@ async function addDummyCompaniesAndInternships() {
     data: {
       title: "Customer Support (Summer Internship)",
       slug: "customer-support-summer-internship-2",
-      description: "Internship2 description",
+      description: `<h2>Заглавие на първата секция</h2>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите.</p>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите. Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове.</p>
+                    <br>
+                    <ul>
+                      <li>това е точка от лист</li>
+                      <li>това е втора такава</li>
+                      <li>това е трета</li>
+                      <li>и четвърта</li>
+                    </ul>`,
       location: "Sofia",
       duration: 3,
       salary: 700,
@@ -122,12 +185,77 @@ async function addDummyCompaniesAndInternships() {
     data: {
       title: "Software Developer (Part-Time)",
       slug: "software-developer-part-time-3",
-      description: "Internship3 description",
+      description: `<h2>Заглавие на първата секция</h2>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите.</p>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите. Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове.</p>
+                    <br>
+                    <ul>
+                      <li>това е точка от лист</li>
+                      <li>това е втора такава</li>
+                      <li>това е трета</li>
+                      <li>и четвърта</li>
+                    </ul>`,
       location: "Plodiv",
       duration: 6,
       salary: 1200,
       salaryRate: SalaryRate.MONTHLY,
       hours: 4,
+      hoursRate: hoursRate.DAY,
+      deadline: new Date(2024, 10, 1),
+      companyId: company3.id
+    }
+  });
+
+  await prisma.internship.create({
+    data: {
+      title: "Marketing Intern (Remote)",
+      slug: "marketing-intern-remote-4",
+      description: `<h2>Заглавие на първата секция</h2>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите.</p>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите. Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове.</p>
+                    <br>
+                    <ul>
+                      <li>това е точка от лист</li>
+                      <li>това е втора такава</li>
+                      <li>това е трета</li>
+                      <li>и четвърта</li>
+                    </ul>`,
+      location: "Remote",
+      duration: 2,
+      salary: 500,
+      salaryRate: SalaryRate.MONTHLY,
+      hours: 6,
+      hoursRate: hoursRate.DAY,
+      deadline: new Date(2024, 10, 1),
+      companyId: company3.id
+    }
+  });
+
+  await prisma.internship.create({
+    data: {
+      title: "Law Intern (Abroad)",
+      slug: "law-intern-abroad-5",
+      description: `<h2>Заглавие на първата секция</h2>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите.</p>
+                    <br>
+                    <p>Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове. Ще е добре да сложим някакви лимитации на дължината, но като цяло можем да го оставим на другарките от човешкио ресурси да си структурират обявите. Тази част е практически документ по свободна форма. При създаването на обявата, клиентите ще могат да пишат текст, да го уголемяват и смаляват, да го форматират и да добавят листове.</p>
+                    <br>
+                    <ul>
+                      <li>това е точка от лист</li>
+                      <li>това е втора такава</li>
+                      <li>това е трета</li>
+                      <li>и четвърта</li>
+                    </ul>`,
+      location: "Abroad",
+      duration: 6,
+      salary: 1500,
+      salaryRate: SalaryRate.MONTHLY,
+      hours: 6,
       hoursRate: hoursRate.DAY,
       deadline: new Date(2024, 10, 1),
       companyId: company3.id

@@ -12,7 +12,7 @@ export default function JobOfferMain({ internship }: Props) {
   return (
     <div className="flex flex-col py-8 w-2/3 justify-center items-start font-title font-medium text-xl">
       <div className="flex flex-row w-full h-full justify-between items-center">
-        <div className="flex flex-row w-1/2 justify-between items-center">
+        <div className="flex flex-row justify-between items-center gap-4">
           <button className="bg-blue-light text-white h-full font-title font-medium text-xl px-4 py-2 rounded-md">
             {t("apply")}
           </button>
@@ -44,8 +44,8 @@ export default function JobOfferMain({ internship }: Props) {
         </button>
       </div>
       <hr className="w-full my-8 border-gray-light border rounded-md" />
-      <p>{`${internship.description}`}</p>
-      <div className="flex flex-row w-1/2 my-8 justify-between items-center">
+      <div dangerouslySetInnerHTML={{ __html: internship.description }} />
+      <div className="flex flex-row my-8 justify-between items-center gap-4">
         <button className="bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md">
           {t("apply")}
         </button>

@@ -14,7 +14,7 @@ export default function IndexHeader() {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-full h-[10vh] shadow-md">
+    <div className="flex flex-row items-center justify-center w-full h-24 shadow-md">
       <div className="flex flex-row items-center justify-between w-10/12 h-full">
         <img src="/uploads/Wist.bg.svg" alt="WIST.bg" className="h-[7vh]" />
         <a href={`/?${searchParams.toString()}`} className="font-title font-normal text-xl underline">

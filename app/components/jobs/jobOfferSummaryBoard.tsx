@@ -62,7 +62,7 @@ export default function JobOfferSummaryBoard({ companyName, internship }: Props)
         </div>
         <div className="flex flex-row px-8 py-6 w-1/3 h-56 justify-between items-center bg-white rounded-md border border-gray-light font-title font-medium text-xl">
           <div className="flex flex-col w-40 h-40 justify-center items-center bg-gray-light"></div>
-          <div className="flex flex-col py-2 pl-8 w-2/3 h-full justify-between">
+          <div className="flex flex-col py-2 pl-6 w-2/3 h-full justify-between">
             <span className="font-title font-bold hover:underline">{companyName}</span>
             <span className="font-title">Интустрия</span>
             <a href="/" className="font-title text-orange hover:underline">
