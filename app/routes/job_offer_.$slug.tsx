@@ -7,7 +7,9 @@ import JobOfferSuggested from "~/components/jobs/jobOfferSuggested";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import ApplyForm from "~/components/jobs/applyForm";
 
 export const loader = l;
 
@@ -33,7 +35,12 @@ export default function JobOffer() {
             isSectionOpen ? "w-[calc(33.333%+44px)]" : "w-0"
           }`}
         >
-          <div className="h-full">gggh6</div>
+          <div className="px-12 py-8">
+            <button className="hover:cursor-pointer" onClick={() => setSectionOpen(false)}>
+              <FontAwesomeIcon icon={faX} className="h-full" size="lg" />
+            </button>
+            <ApplyForm />
+          </div>
         </div>
         <div className="flex flex-col py-8 w-2/3 justify-center items-start font-title font-medium text-xl">
           <div className="flex flex-row w-full h-full justify-between items-center">
@@ -43,7 +50,7 @@ export default function JobOffer() {
               </button>
               <button
                 className="bg-orange text-white font-title font-medium text-xl px-4 py-2 rounded-md"
-                onClick={() => setSectionOpen(!isSectionOpen)} // Toggle light-blue section
+                onClick={() => setSectionOpen(true)} // Toggle light-blue section
               >
                 {t("apply_with_wist")}
               </button>
@@ -79,7 +86,7 @@ export default function JobOffer() {
             </button>
             <button
               className="bg-orange text-white font-title font-medium text-xl px-4 py-2 rounded-md"
-              onClick={() => setSectionOpen(!isSectionOpen)} // Toggle light-blue section
+              onClick={() => setSectionOpen(true)} // Toggle light-blue section
             >
               {t("apply_with_wist")}
             </button>

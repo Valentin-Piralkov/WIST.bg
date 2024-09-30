@@ -13,9 +13,9 @@ export default function ContactForm() {
         action="/contact"
         method="post"
         preventScrollReset
-        className="flex flex-col w-full items-center justify-between mt-8 self-start overflow-hidden"
+        className="flex flex-col w-full h-full items-center justify-between mt-8 self-start overflow-hidden"
       >
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full h-full justify-between">
           <div className="flex flex-row gap-8 w-full">
             <input
               name="name"
@@ -42,7 +42,7 @@ export default function ContactForm() {
             name="message"
             placeholder={t("message")}
             required
-            className="text-l w-full h-[10vh] rounded-md mt-8 px-4 py-2 font-title font-normal focus:outline-none resize-none"
+            className="text-l w-full h-28 rounded-md mt-8 px-4 py-2 font-title font-normal focus:outline-none resize-none"
           />
           {actionData?.ok && <div className="text-xl">{actionData.message.message}</div>}
           {actionData?.ok === false && <div className="text-xl text-[#ff3333]">{actionData.message}</div>}

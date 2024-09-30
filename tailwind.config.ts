@@ -9,7 +9,8 @@ export default {
       white: "#FFFFFF",
       "blue-light": "#00B4D8",
       "blue-dark": "#013552",
-      orange: "#F45103"
+      orange: "#F45103",
+      black: "#000000"
     },
     fontFamily: {
       logo: ["Quicksand", "sans-serif"],
