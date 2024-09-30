@@ -117,5 +117,12 @@
   "French": "Френски",
   "Spanish": "Испански",
   "Russian": "Руски",
-  "Other_Language": "Други езици"
+  "Other_Language": "Други езици",
+  "notice_period": "Период на предизвестие",
+  "notice_period_placeholder": "Моля, въведете период на предизвестие",
+  "cv": "Резюме",
+  "cover_letter": "Мотивационно писмо",
+  "question": "Въпрос от работодателя",
+  "question_placeholder": "Моля, въведете вашия отговор (300 думи)",
+  "optional": "по избор"
 }

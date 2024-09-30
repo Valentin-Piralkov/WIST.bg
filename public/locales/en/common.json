@@ -117,5 +117,12 @@
   "French": "French",
   "Spanish": "Spanish",
   "Russian": "Russian",
-  "Other_Language": "Other languages"
+  "Other_Language": "Other languages",
+  "notice_period": "Notice period",
+  "notice_period_placeholder": "Please enter your notice period",
+  "cv": "CV",
+  "cover_letter": "Cover letter",
+  "question": "Employer's question",
+  "question_placeholder": "Please answer the employer's question (300 words)",
+  "optional": "optional"
 }

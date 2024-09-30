@@ -93,7 +93,7 @@ export default function ApplyForm() {
 
         <div>
           <label htmlFor="question_1" className="block text-md font-medium text-white">
-            {t("question")} 1
+            {t("question")} 1 ({t("optional")})
           </label>
           <textarea
             name="question_1"
@@ -101,13 +101,12 @@ export default function ApplyForm() {
             rows={6}
             placeholder={t("question_placeholder")}
             className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-light focus:border-transparent"
-            required
           />
         </div>
 
         <div>
           <label htmlFor="question_2" className="block text-md font-medium text-white">
-            {t("question")} 2
+            {t("question")} 2 ({t("optional")})
           </label>
           <textarea
             name="question_2"
@@ -115,7 +114,6 @@ export default function ApplyForm() {
             rows={6}
             placeholder={t("question_placeholder")}
             className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-light focus:border-transparent"
-            required
           />
         </div>
 

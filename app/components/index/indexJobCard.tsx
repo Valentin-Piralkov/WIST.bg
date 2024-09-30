@@ -1,6 +1,7 @@
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { faCalendarDays, faLocationDot, faClock, faCircleDollarToSlot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useSearchParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { dateToShortString } from "~/lib/utils/stringUtils";
 import { Internship } from "~/types/JobTypes";
@@ -12,12 +13,16 @@ interface Props {
 
 export default function IndexCard({ companyName, internship }: Props) {
   const { t } = useTranslation();
+
+  // Get the search params in the URL for navigation:
+  const [searchParams] = useSearchParams();
+
   return (
     <div className="flex flex-col px-8 py-6 w-full h-64 justify-between rounded-md border border-gray-light font-title font-medium text-xl">
       <div className="flex flex-row h-1/4 w-full justify-between">
-        <a href={`/job_offer/${internship.slug}`}>
+        <Link to={`/job_offer/${internship.slug}?${searchParams.toString()}`}>
           <h3>{internship.title}</h3>
-        </a>
+        </Link>
         <FontAwesomeIcon icon={faBookmark} className="h-full" />
       </div>
       <div className="flex flex-row h-3/4 w-full justify-between">

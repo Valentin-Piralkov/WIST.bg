@@ -68,12 +68,12 @@ button {
   @apply mt-4;
 }
 
-#legal > ul {
+ul {
   list-style: disc;
   list-style-position: inside;
 }
 
-#legal > ol {
+ol {
   list-style: decimal;
   list-style-position: inside;
 }
