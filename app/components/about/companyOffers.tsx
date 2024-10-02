@@ -1,0 +1,19 @@
+import { useTranslation } from "react-i18next";
+import JobOfferSuggestedCard from "../jobs/jobOfferSuggetedCard";
+
+export default function CompanyOfferSuggested() {
+  const { t } = useTranslation();
+  return (
+    <div className="flex flex-col my-8 px-8 py-6 w-full min-h-56 justify-normal items-start bg-white rounded-md border border-gray-light font-title font-medium">
+      <h3>{t("open_jobs")}</h3>
+      <hr className="w-full my-5 border-gray-light border rounded-md" />
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="w-full">
+          <JobOfferSuggestedCard />
+          <hr className="w-full my-5 border-gray-light border rounded-md" />
+        </div>
+      ))}
+      <p className="text-orange font-title font-medium text-xl hover:underline">{t("show_all")}</p>
+    </div>
+  );
+}

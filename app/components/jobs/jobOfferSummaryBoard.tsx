@@ -7,17 +7,23 @@ import {
   faBuilding
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useSearchParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { dateToShortString } from "~/lib/utils/stringUtils";
 import { Internship } from "~/types/JobTypes";
 
 interface Props {
   companyName: string;
+  companySlug: string;
   internship: Internship;
 }
 
-export default function JobOfferSummaryBoard({ companyName, internship }: Props) {
+export default function JobOfferSummaryBoard({ companyName, companySlug, internship }: Props) {
   const { t } = useTranslation();
+
+  // Get the search params in the URL for navigation:
+  const [searchParams] = useSearchParams();
+
   return (
     <div className="flex flex-col py-8 w-full h-72 justify-center items-center bg-blue-dark font-title font-medium text-xl">
       <div className="flex flex-row w-10/12 justify-between gap-10">
@@ -65,10 +71,13 @@ export default function JobOfferSummaryBoard({ companyName, internship }: Props)
           <div className="flex flex-col py-2 pl-6 w-2/3 h-full justify-between">
             <span className="font-title font-bold hover:underline">{companyName}</span>
             <span className="font-title">Индустрия</span>
-            <a href="/" className="font-title text-orange hover:underline">
+            <Link
+              to={`/about/${companySlug}?${searchParams.toString()}`}
+              className="font-title text-orange hover:underline"
+            >
               {" "}
               Линк към компанията{" "}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

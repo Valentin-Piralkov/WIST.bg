@@ -20,14 +20,18 @@ export default function JobOffer() {
   const [isSectionOpen, setSectionOpen] = useState(false);
 
   if (!data.internship) {
-    return <div>Internship not found</div>;
+    return <div>{t("internship_not_found")}</div>;
   }
 
   return (
     <div className="flex flex-col justify-between items-center min-h-[100vh] h-full w-full bg-white">
       <IndexHeader />
       <div className="flex flex-col w-full items-center">
-        <JobOfferSummaryBoard companyName={data.internship.Company.name} internship={data.internship} />
+        <JobOfferSummaryBoard
+          companyName={data.internship.Company.name}
+          companySlug={data.internship.Company.slug}
+          internship={data.internship}
+        />
       </div>
       <div className="relative flex flex-row w-full px-40 min-h-[60vh] justify-between items-start gap-10">
         <div

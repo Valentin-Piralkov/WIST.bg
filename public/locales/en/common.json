@@ -124,5 +124,10 @@
   "cover_letter": "Cover letter",
   "question": "Employer's question",
   "question_placeholder": "Please answer the employer's question (300 words)",
-  "optional": "optional"
+  "optional": "optional",
+  "open_jobs": "Отворени позиции",
+  "show_all": "Покажи всички",
+  "similar_jobs": "Подобни позиции",
+  "company_not_found": "Няма налична информация за тази компания",
+  "internship_not_found": "Няма налична информация за този стаж"
 }

@@ -30,6 +30,22 @@ async function filters() {
     ]
   });
 
+  const categty_city = await prisma.category.create({
+    data: {
+      label: "City"
+    }
+  });
+
+  await prisma.filterOption.createMany({
+    data: [
+      { label: "Sofia", value: false, categoryId: categty_city.id },
+      { label: "Plodiv", value: false, categoryId: categty_city.id },
+      { label: "Varna", value: false, categoryId: categty_city.id },
+      { label: "Burgas", value: false, categoryId: categty_city.id },
+      { label: "Other_City", value: false, categoryId: categty_city.id }
+    ]
+  });
+
   const category_internship_type = await prisma.category.create({
     data: {
       label: "internship_type"
@@ -97,6 +113,7 @@ async function addDummyCompaniesAndInternships() {
   const company1 = await prisma.company.create({
     data: {
       name: "BoxNow",
+      slug: "boxnow-1",
       email: "boxnow@gmail.com",
       emailVerified: true,
       phone: "0888888888",
@@ -108,6 +125,7 @@ async function addDummyCompaniesAndInternships() {
   const company2 = await prisma.company.create({
     data: {
       name: "Vivacom",
+      slug: "vivacom-2",
       email: "vivacom@gmail.com",
       emailVerified: true,
       phone: "0888888887",
@@ -119,6 +137,7 @@ async function addDummyCompaniesAndInternships() {
   const company3 = await prisma.company.create({
     data: {
       name: "Telerik Academy",
+      slug: "telerik-academy-3",
       email: "telerik@gmail.com",
       emailVerified: true,
       phone: "0888888886",
