@@ -53,7 +53,7 @@ export default function JobOffer() {
                 {t("apply")}
               </button>
               <button
-                className="bg-orange text-white font-title font-medium text-xl px-4 py-2 rounded-md"
+                className="bg-orange-wist text-white font-title font-medium text-xl px-4 py-2 rounded-md"
                 onClick={() => setSectionOpen(true)} // Toggle light-blue section
               >
                 {t("apply_with_wist")}
@@ -89,7 +89,7 @@ export default function JobOffer() {
               {t("apply")}
             </button>
             <button
-              className="bg-orange text-white font-title font-medium text-xl px-4 py-2 rounded-md"
+              className="bg-orange-wist text-white font-title font-medium text-xl px-4 py-2 rounded-md"
               onClick={() => setSectionOpen(true)} // Toggle light-blue section
             >
               {t("apply_with_wist")}

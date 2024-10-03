@@ -107,6 +107,10 @@ async function filters() {
       { label: "Other_Language", value: false, categoryId: category_language.id }
     ]
   });
+
+  await prisma.section.createMany({
+    data: [{ label: "personal_info" }, { label: "saved_offers" }, { label: "settings" }]
+  });
 }
 
 async function addDummyCompaniesAndInternships() {
@@ -287,6 +291,7 @@ async function addDummyUsers() {
     data: {
       firstName: "Nikolay",
       lastName: "Nikolov",
+      slug: "nikolay-nikolov-1",
       email: "user1@gmail.com",
       emailVerified: false,
       password: "123456",
@@ -300,6 +305,7 @@ async function addDummyUsers() {
     data: {
       firstName: "Ivan",
       lastName: "Lozanov",
+      slug: "ivan-lozanov-2",
       email: "user2@gmail.com",
       emailVerified: true,
       phone: "0888888876",

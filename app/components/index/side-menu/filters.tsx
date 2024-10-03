@@ -10,7 +10,7 @@ export default function IndexFilters({ filters }: Props<string>) {
   const { t } = useTranslation();
   return (
     <div className="flex flex-col justify-normal text-left gap-4 mb-4">
-      <button className="text-xl font-title text-left text-orange">{t("clear_filters")}</button>
+      <button className="text-xl font-title text-left text-orange-wist">{t("clear_filters")}</button>
       <hr className="border-1 border-gray-light" />
       {filters.map((filter, index) => (
         <div key={index} className="flex flex-col gap-4">

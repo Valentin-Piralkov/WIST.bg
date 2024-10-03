@@ -7,3 +7,8 @@ export type Filter<T extends string> = {
   label: T;
   options: FilterOption<T>[];
 };
+
+export type Section<T extends string> = {
+  id: number;
+  label: T;
+};

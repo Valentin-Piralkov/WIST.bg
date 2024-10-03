@@ -98,3 +98,41 @@ body:has(.requires-no-scroll) {
 .underline {
   text-decoration: underline;
 }
+
+.my-button {
+  position: relative;
+}
+
+.my-button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px; /* Thickness of the underline */
+  background-color: black;
+  transition: width 0.3s ease-in-out;
+}
+
+.my-button:hover::after {
+  width: 100%;
+}
+
+.my-button-selected {
+  position: relative;
+}
+
+.my-button-selected::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px; /* Thickness of the underline */
+  background-color: #f45103;
+  transition: width 0.3s ease-in-out;
+}
+
+.my-button-selected:hover::after {
+  width: 100%;
+}

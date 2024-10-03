@@ -20,16 +20,19 @@ export default function IndexHeader() {
         <Link to={`/?${searchParams.toString()}`} className="font-title font-normal text-xl underline">
           {t("home")}
         </Link>
-        <a href={`/profile?${searchParams.toString()}`} className="font-title font-normal text-xl">
+        <Link
+          to={`/profile/nikolay-nikolov-1/personal_info?${searchParams.toString()}`}
+          className="font-title font-normal text-xl"
+        >
           {t("profile")}
-        </a>
-        <a href={`/about?${searchParams.toString()}`} className="font-title font-normal text-xl">
+        </Link>
+        <Link to={`/about?${searchParams.toString()}`} className="font-title font-normal text-xl">
           {t("about")}
-        </a>
+        </Link>
         <IndexSearchBar />
-        <a href={`/login?${searchParams.toString()}`} className="font-title font-normal text-xl hover:underline">
+        <Link to={`/login?${searchParams.toString()}`} className="font-title font-normal text-xl hover:underline">
           {t("login")}
-        </a>
+        </Link>
         <button
           className="bg-blue-light text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline"
           onClick={handleRegistrationClick}

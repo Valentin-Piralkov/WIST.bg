@@ -19,6 +19,7 @@ model User {
   id               Int               @id @default(autoincrement())
   firstName        String
   lastName         String
+  slug             String            @unique
   email            String            @unique
   emailVerified    Boolean           @default(false)
   password         String
@@ -29,6 +30,7 @@ model User {
   updatedAt        DateTime          @updatedAt
   activationTokens ActivationToken[]
   resetTokens      ResetToken[]
+  savedInternships Internship[]
 }
 
 model Company {
@@ -47,6 +49,13 @@ model Company {
   internships             Internship[]
   companyResetTokens      CompanyResetToken[]
   companyActivationTokens CompanyActivationToken[]
+}
+
+model Section {
+  id        Int      @id @default(autoincrement())
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum SalaryRate {
@@ -86,6 +95,7 @@ model Internship {
   updatedAt   DateTime   @updatedAt
   Company     Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId   Int
+  users       User[]
 }
 
 // for email verification (expiration 24h)

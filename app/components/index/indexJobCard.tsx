@@ -30,7 +30,7 @@ export default function IndexCard({ companyName, internship }: Props) {
           <img src="/uploads/Wist-full.svg" alt="WIST logo" />
         </div>
         <div className="flex flex-col w-2/3 h-full justify-between">
-          <span className="text-orange">{companyName}</span>
+          <span className="text-orange-wist">{companyName}</span>
           <div className="flex flex-row w-full h-2/3 justify-between">
             <div className="flex flex-col h-full w-full justify-between">
               <div className="flex flex-row items-center gap-2 w-full">
