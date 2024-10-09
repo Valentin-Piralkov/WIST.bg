@@ -111,6 +111,20 @@ async function filters() {
   await prisma.section.createMany({
     data: [{ label: "personal_info" }, { label: "saved_offers" }, { label: "settings" }]
   });
+
+  await prisma.employerSection.createMany({
+    data: [{ label: "company_info" }, { label: "company_payment" }, { label: "settings" }]
+  });
+
+  await prisma.skill.createMany({
+    data: [
+      { label: "Java" },
+      { label: "Adobe Photoshop" },
+      { label: "SCRUM" },
+      { label: "English" },
+      { label: "Customer Service" }
+    ]
+  });
 }
 
 async function addDummyCompaniesAndInternships() {

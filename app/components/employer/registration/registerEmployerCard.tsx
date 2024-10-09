@@ -1,15 +1,14 @@
 import { Form } from "@remix-run/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaFacebook, FaGoogle, FaApple, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-export default function UserRegistrationCard() {
+export default function EmployerRegistrationCard() {
   const { t } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
+    name: "",
     email: "",
     phone: "",
     password: "",
@@ -27,8 +26,7 @@ export default function UserRegistrationCard() {
 
   // Check if all fields are filled
   const isFormValid =
-    formData.first_name !== "" &&
-    formData.last_name !== "" &&
+    formData.name !== "" &&
     formData.email !== "" &&
     formData.phone !== "" &&
     formData.password !== "" &&
@@ -41,7 +39,7 @@ export default function UserRegistrationCard() {
 
   return (
     <div className="flex flex-col px-8 py-6 w-1/3 justify-center items-center font-title font-medium text-xl">
-      <h2>{t("create_profile")}</h2>
+      <h2 className="text-center">{t("create_employer_profile")}</h2>
       <div className="flex flex-row w-full justify-center items-center gap-4 mt-4">
         <h5>{t("create_profile_text")}</h5>{" "}
         <a href="/login" className="text-orange hover:underline">
@@ -51,42 +49,24 @@ export default function UserRegistrationCard() {
       </div>
 
       <Form method="post" className="space-y-6 mt-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <div>
-            <label htmlFor="first_name" className="block text-sm font-medium">
-              {t("first_name")}
-            </label>
-            <input
-              type="text"
-              name="first_name"
-              id="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              placeholder={t("first_last_name_placeholder")}
-              className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div>
-            <label htmlFor="last_name" className="block text-sm font-medium">
-              {t("last_name")}
-            </label>
-            <input
-              type="text"
-              name="last_name"
-              id="last_name"
-              value={formData.last_name}
-              onChange={handleChange}
-              placeholder={t("first_last_name_placeholder")}
-              className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
-              required
-            />
-          </div>
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium">
+            {t("company_name")}
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder={t("first_last_name_placeholder")}
+            className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
+            required
+          />
         </div>
         <div>
           <label htmlFor="email" className="block text-sm font-medium">
-            {t("email")}
+            {t("company_email")}
           </label>
           <input
             type="email"
@@ -102,7 +82,7 @@ export default function UserRegistrationCard() {
 
         <div>
           <label htmlFor="phone" className="block text-sm font-medium">
-            {t("phone")}
+            {t("company_phone")}
           </label>
           <input
             type="tel"
@@ -182,34 +162,6 @@ export default function UserRegistrationCard() {
           {t("create_profile")}
         </button>
       </Form>
-
-      <div className="mt-6 text-center w-full">
-        <div className="flex items-center my-6">
-          <div className="flex-grow border-t-2 border-gray-light"></div>
-          <span className="mx-4">{t("or_continue_with")}</span>
-          <div className="flex-grow border-t-2 border-gray-light"></div>
-        </div>
-        <div className="flex justify-center space-x-4 w-full">
-          <button className=" p-2 rounded-md border border-gray-light">
-            <div className="flex flex-row items-center gap-2 w-full">
-              <FaFacebook />
-              Facebook
-            </div>
-          </button>
-          <button className="p-2 rounded-md border border-gray-light">
-            <div className="flex flex-row items-center gap-2 w-full">
-              <FaGoogle />
-              Google
-            </div>
-          </button>
-          <button className="p-2 rounded-md border border-gray-light">
-            <div className="flex flex-row items-center gap-2 w-full">
-              <FaApple />
-              Apple
-            </div>
-          </button>
-        </div>
-      </div>
     </div>
   );
 }

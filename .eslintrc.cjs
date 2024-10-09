@@ -28,7 +28,7 @@ module.exports = {
     // React
     {
       files: ["**/*.{js,jsx,ts,tsx}"],
-      plugins: ["react", "jsx-a11y"],
+      plugins: ["react", "jsx-a11y", "unused-imports"],
       extends: [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
@@ -53,14 +53,19 @@ module.exports = {
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/alt-text": "off",
         "jsx-a11y/media-has-caption": "off",
-        "jsx-a11y/no-noninteractive-element-interactions": "off"
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "unused-imports/no-unused-imports": "error", // Add rule to remove unused imports
+        "unused-imports/no-unused-vars": [
+          "warn",
+          { vars: "all", varsIgnorePattern: "^_", args: "after-used", argsIgnorePattern: "^_" }
+        ]
       }
     },
 
     // Typescript
     {
       files: ["**/*.{ts,tsx}"],
-      plugins: ["@typescript-eslint", "import"],
+      plugins: ["@typescript-eslint", "import", "unused-imports"],
       parser: "@typescript-eslint/parser",
       settings: {
         "import/internal-regex": "^~/",
@@ -75,7 +80,12 @@ module.exports = {
       },
       rules: {
         "import/no-named-as-default-member": "off",
-        "import/no-named-as-default": "off"
+        "import/no-named-as-default": "off",
+        "unused-imports/no-unused-imports": "error", // Add rule to remove unused imports
+        "unused-imports/no-unused-vars": [
+          "warn",
+          { vars: "all", varsIgnorePattern: "^_", args: "after-used", argsIgnorePattern: "^_" }
+        ]
       },
       extends: ["plugin:@typescript-eslint/recommended", "plugin:import/recommended", "plugin:import/typescript"]
     },

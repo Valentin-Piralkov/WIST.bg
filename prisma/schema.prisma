@@ -58,6 +58,21 @@ model Section {
   updatedAt DateTime @updatedAt
 }
 
+model EmployerSection {
+  id        Int      @id @default(autoincrement())
+  label     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Skill {
+  id          Int          @id @default(autoincrement())
+  label       String       @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  internships Internship[]
+}
+
 enum SalaryRate {
   HOURLY
   DAILY
@@ -96,6 +111,7 @@ model Internship {
   Company     Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId   Int
   users       User[]
+  skills      Skill[]
 }
 
 // for email verification (expiration 24h)

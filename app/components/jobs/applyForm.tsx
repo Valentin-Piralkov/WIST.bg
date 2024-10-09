@@ -119,7 +119,7 @@ export default function ApplyForm() {
 
         <button
           type="submit"
-          className="w-2/5 py-2 px-4 rounded-md mt-4 bg-orange hover:underline font-title text-white disabled:bg-gray-light disabled:cursor-not-allowed disabled:hover:no-underline"
+          className="w-2/5 py-2 px-4 rounded-md mt-4 bg-orange-wist hover:underline font-title text-white disabled:bg-gray-light disabled:cursor-not-allowed disabled:hover:no-underline"
         >
           {t("create_profile")}
         </button>

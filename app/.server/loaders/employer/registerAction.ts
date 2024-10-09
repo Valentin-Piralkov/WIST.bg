@@ -20,54 +20,53 @@ export async function registerAction({ request }: ActionFunctionArgs) {
   // get search params from URL
   const url = new URL(request.url);
   const searchParams = url.searchParams;
+  const finalURL = searchParams.toString() ? `?${searchParams.toString()}&` : `?`;
 
   const formData = await request.formData();
-  const firstName = formData.get("first_name") as string;
-  const lastName = formData.get("last_name") as string;
+  const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const phone = formData.get("phone") as string;
   const password = formData.get("password") as string;
   const confirmPassword = formData.get("repeat_password") as string;
 
-  if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
-    return redirect(`/register_user?error=please_fill_all_fields&${searchParams.toString()}`);
+  if (!name || !email || !phone || !password || !confirmPassword) {
+    return redirect(`/employer/register?error=please_fill_all_fields&${searchParams.toString()}`);
   }
 
-  let user: any;
+  let company: any;
 
   try {
-    user = await db.user.findUnique({
+    company = await db.company.findUnique({
       where: { email: email.toLowerCase() }
     });
   } catch (error) {
     console.error(error);
     return redirect("/505");
   } finally {
-    if (user) {
-      return redirect(`/register?error=email_already_exists&${searchParams.toString()}`);
+    if (company) {
+      return redirect(`/employer/register?error=email_already_exists&${searchParams.toString()}`);
     }
   }
 
   if (!isValidPassword(password)) {
-    return redirect(`/register?error=invalid_password&${searchParams.toString()}`);
+    return redirect(`/employer/register?error=invalid_password&${searchParams.toString()}`);
   }
 
   if (password !== confirmPassword) {
-    return redirect(`/register?error=passwords_do_not_match&${searchParams.toString()}`);
+    return redirect(`/employer/register?error=passwords_do_not_match&${searchParams.toString()}`);
   }
 
   if (!isValidPhoneNumber(phone)) {
-    return redirect(`/register?error=invalid_phone_number&${searchParams.toString()}`);
+    return redirect(`/employer/register?error=invalid_phone_number&${searchParams.toString()}`);
   }
 
   try {
     //hash the password
     const hashedPassword = await hash(password, 12);
 
-    user = await db.user.create({
+    company = await db.company.create({
       data: {
-        firstName: firstName,
-        lastName: lastName,
+        name: name,
         slug: randomUUID(),
         email: email.toLowerCase(),
         emailVerified: true,
@@ -79,28 +78,28 @@ export async function registerAction({ request }: ActionFunctionArgs) {
     console.error(error);
     return redirect("/505");
   } finally {
-    if (!user) {
-      return redirect(`/register?error=account_created_error&${searchParams.toString()}`);
+    if (!company) {
+      return redirect(`/employer/register?error=account_created_error&${searchParams.toString()}`);
     }
   }
 
-  const slug = generateSlug(`${firstName} ${lastName}`, user.id);
+  const slug = generateSlug(name, company.id);
 
   try {
-    user = await db.user.update({
-      where: { id: user.id },
+    company = await db.company.update({
+      where: { id: company.id },
       data: { slug }
     });
   } catch (error) {
     console.error(error);
     return redirect("/505");
   } finally {
-    if (!user || !user.slug || user.slug !== slug) {
-      await db.user.delete({ where: { id: user.id } });
-      return redirect(`/register?error=account_created_error&${searchParams.toString()}`);
+    if (!company || !company.slug || company.slug !== slug) {
+      await db.user.delete({ where: { id: company.id } });
+      return redirect(`/employer/register?error=account_created_error&${searchParams.toString()}`);
     }
   }
 
   // After processing, redirect the user
-  return redirect(`/login?success=account_created_successfully&${searchParams.toString()}`);
+  return redirect(`/employer/login${finalURL}success=account_created_successfully`);
 }
