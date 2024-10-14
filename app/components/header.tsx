@@ -1,8 +1,14 @@
 import { useTranslation } from "react-i18next";
 import IndexSearchBar from "./searchBar";
 import { Link, useNavigate, useSearchParams } from "@remix-run/react";
+import Logout from "./login/logout";
 
-export default function IndexHeader() {
+interface Props {
+  isUserLoggedIn: boolean;
+  profile_slug: string;
+}
+
+export default function IndexHeader({ isUserLoggedIn, profile_slug }: Props) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -21,7 +27,11 @@ export default function IndexHeader() {
           {t("home")}
         </Link>
         <Link
-          to={`/profile/nikolay-nikolov-1/personal_info?${searchParams.toString()}`}
+          to={
+            profile_slug !== ""
+              ? `/profile/${profile_slug}/personal_info?${searchParams.toString()}`
+              : `/login?${searchParams.toString()}`
+          }
           className="font-title font-normal text-xl"
         >
           {t("profile")}
@@ -30,15 +40,22 @@ export default function IndexHeader() {
           {t("about")}
         </Link>
         <IndexSearchBar />
-        <Link to={`/login?${searchParams.toString()}`} className="font-title font-normal text-xl hover:underline">
-          {t("login")}
-        </Link>
-        <button
-          className="bg-blue-light text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline"
-          onClick={handleRegistrationClick}
-        >
-          {t("register")}
-        </button>
+
+        {!isUserLoggedIn ? (
+          <div className="flex flex-row justify-between items-center gap-16">
+            <Link to={`/login?${searchParams.toString()}`} className="font-title font-normal text-xl hover:underline">
+              {t("login")}
+            </Link>
+            <button
+              className="bg-blue-light text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline"
+              onClick={handleRegistrationClick}
+            >
+              {t("register")}
+            </button>
+          </div>
+        ) : (
+          <Logout />
+        )}
       </div>
     </div>
   );

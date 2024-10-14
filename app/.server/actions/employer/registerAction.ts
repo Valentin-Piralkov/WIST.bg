@@ -1,21 +1,20 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
 import { db } from "~/lib/db";
 import { isValidPassword, isValidPhoneNumber } from "~/lib/utils/formatUtils";
-import { createUserSession, registerUser } from "~/lib/utils/auth.server";
+import { createUserSession, registerEmployer } from "~/lib/utils/auth.server";
 import { z } from "zod";
 
 /**
- * This function is an action function that is called when a user submits the registration form.
+ * This function is an action function that is called when an employer submits the registration form.
  * It receives the request object and extracts the form data from it.
- * It then performs any validation or user creation logic and redirects the user to the home page.
+ * It then performs any validation or user creation logic and redirects the employer to the home page.
  *
  * @param {ActionFunctionArgs} { request } - The registration form data
  * @returns {Promise} - Redirects the user to the home page
  */
 
 const registerSchema = z.object({
-  first_name: z.string(),
-  last_name: z.string(),
+  name: z.string(),
   email: z.string().email(),
   phone: z.string(),
   password: z.string().min(6),
@@ -36,20 +35,20 @@ export async function registerAction({ request }: ActionFunctionArgs) {
     return redirect("/404");
   }
 
-  const { first_name, last_name, email, phone, password, repeat_password } = parsedData.data;
+  const { name, email, phone, password, repeat_password } = parsedData.data;
 
   // check if all fields are filled
-  if (!first_name || !last_name || !email || !phone || !password || !repeat_password) {
-    return redirect(`/register_user${finalURL}error=please_fill_all_fields`);
+  if (!name || !email || !phone || !password || !repeat_password) {
+    return redirect(`/employer/register${finalURL}error=please_fill_all_fields`);
   }
 
   // check if email already exists
   try {
-    const user = await db.user.findUnique({
+    const company = await db.company.findUnique({
       where: { email: email.toLowerCase() }
     });
-    if (user) {
-      return redirect(`/register_user${finalURL}error=email_already_exists`);
+    if (company) {
+      return redirect(`/employer/register${finalURL}error=email_already_exists`);
     }
   } catch (error) {
     console.error(error);
@@ -58,25 +57,29 @@ export async function registerAction({ request }: ActionFunctionArgs) {
 
   // validate password
   if (!isValidPassword(password)) {
-    return redirect(`/register_user${finalURL}error=invalid_password`);
+    return redirect(`/employer/register${finalURL}error=invalid_password`);
   }
 
   if (password !== repeat_password) {
-    return redirect(`/register_user${finalURL}error=passwords_do_not_match`);
+    return redirect(`/employer/register${finalURL}error=passwords_do_not_match`);
   }
 
   // validate phone number
   if (!isValidPhoneNumber(phone)) {
-    return redirect(`/register_user${finalURL}error=invalid_phone_number`);
+    return redirect(`/employer/register${finalURL}error=invalid_phone_number`);
   }
 
-  // create user
+  // create company
   try {
-    const user = await registerUser({ firstName: first_name, lastName: last_name, phone, email, password });
-    if (user) {
-      return createUserSession(user.id, "user", `/login${finalURL}success=registration_successful`);
+    const company = await registerEmployer({ name, phone, email, password });
+    if (company) {
+      return createUserSession(
+        company.id,
+        "employer",
+        `/employer/profile/${company.slug}/company_info${finalURL}success=registration_successful`
+      );
     } else {
-      console.error("Failed to create user session for: ", user);
+      console.error("Failed to create user session for: ", company);
       return redirect("/505");
     }
   } catch (error) {

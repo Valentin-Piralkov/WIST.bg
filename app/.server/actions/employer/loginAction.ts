@@ -1,9 +1,9 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
+import { createUserSession, loginEmployer } from "~/lib/utils/auth.server";
 import { z } from "zod";
-import { createUserSession, loginUser } from "~/lib/utils/auth.server";
 
 /**
- * This function is an action function that is called when a user submits the login form.
+ * This function is an action function that is called when an emploer submits the login form.
  * It receives the request object and extracts the form data from it.
  * It then performs any validation or user creation logic and redirects the user to the home page.
  *
@@ -33,12 +33,18 @@ export async function loginAction({ request }: ActionFunctionArgs) {
 
   const { email, password, remember_me } = parsedData.data;
 
+  // check if all fields are filled
   if (!email || !password) {
-    return redirect(`/login${finalURL}error=please_fill_all_fields`);
+    return redirect(`/employer/login${finalURL}error=please_fill_all_fields`);
   }
 
-  const user = await loginUser({ email, password });
-  if (!user) return redirect(`/login${finalURL}error=invalid_credentials`);
+  // login employer and create session
+  const company = await loginEmployer({ email, password });
+  if (!company) return redirect(`/employer/login${finalURL}error=invalid_credentials`);
 
-  return createUserSession(user.id, "user", `/${finalURL}success=login_successful`);
+  return createUserSession(
+    company.id,
+    "employer",
+    `/employer/profile/${company.slug}/company_info${finalURL}success=login_successful`
+  );
 }

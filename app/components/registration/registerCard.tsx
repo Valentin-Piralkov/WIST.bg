@@ -24,7 +24,7 @@ export default function RegisterCard() {
             {t("looking_for_work")}
           </button>
         </a>
-        <a href={`/register?${searchParams.toString()}`} className="w-full">
+        <a href={`/employer/register?${searchParams.toString()}`} className="w-full">
           <button className="w-full h-[5vh] bg-orange text-white px-4 py-2 rounded-md min-w-[12vh] font-title font-normal text-xl hover:underline">
             {t("offering_work")}
           </button>

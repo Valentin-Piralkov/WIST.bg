@@ -19,13 +19,15 @@ export default function JobOffer() {
   // State to control the light-blue section visibility
   const [isSectionOpen, setSectionOpen] = useState(false);
 
+  const isUserLoggedIn = data.userId ? true : false;
+
   if (!data.internship) {
     return <div>{t("internship_not_found")}</div>;
   }
 
   return (
     <div className="flex flex-col justify-between items-center min-h-[100vh] h-full w-full bg-white">
-      <IndexHeader />
+      <IndexHeader isUserLoggedIn={isUserLoggedIn} profile_slug={data.profile_slug || ""} />
       <div className="flex flex-col w-full items-center">
         <JobOfferSummaryBoard
           companyName={data.internship.Company.name}

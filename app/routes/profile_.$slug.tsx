@@ -15,9 +15,10 @@ export default function Index() {
     return <div> {t("user_not_found")} </div>;
   }
 
+  const isUserLoggedIn = data.userId ? true : false;
   return (
     <div className="flex flex-col justify-between min-h-[100vh] h-full w-full bg-white gap-20">
-      <IndexHeader />
+      <IndexHeader isUserLoggedIn={isUserLoggedIn} profile_slug={data.user.slug} />
       <div className="flex flex-row w-full px-40 self-center gap-20">
         <div className="flex flex-col w-1/4 mt-8 justify-start">
           <ProfileSections sections={data.sections} slug={data.user.slug} />

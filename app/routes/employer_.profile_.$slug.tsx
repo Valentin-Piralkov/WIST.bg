@@ -15,10 +15,12 @@ export default function EmployerProfile() {
     return <div> {t("companmy_not_found")} </div>;
   }
 
+  const isUserLoggedIn = data.userId ? true : false;
+
   return (
     <div className="flex flex-col justify-between min-h-[100vh] h-full w-full bg-white gap-20">
       <div className="flex flex-col gap-10">
-        <EmployerHeader />
+        <EmployerHeader isUserLoggedIn={isUserLoggedIn} profile_slug={data.company.slug} />
         <div className="flex flex-row w-full h-full px-40 gap-20">
           <div className="flex flex-col w-1/4 mt-8 justify-start">
             <EmployerProfileSections sections={data.sections} slug={data.company.slug} />
