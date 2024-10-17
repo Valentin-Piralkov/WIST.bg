@@ -1,6 +1,9 @@
-import { Form } from "@remix-run/react";
+import { Form, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { settingsAction } from "~/.server/actions/profile/settingsAction";
+import { l } from "~/.server/loaders/profile";
+import { PreferenceToggle } from "~/components/elements/toggleButton";
 
 interface PreferencesState {
   newPosts: boolean;
@@ -8,14 +11,12 @@ interface PreferencesState {
   marketing: boolean;
 }
 
-interface PreferenceToggleProps {
-  label: string;
-  isEnabled: boolean;
-  onToggle: () => void;
-}
+export const loader = l;
+export const action = settingsAction;
 
 export default function ProfileSettings() {
   const { t } = useTranslation();
+  const data = useLoaderData<typeof l>();
 
   const [preferences, setPreferences] = useState({
     newPosts: true,
@@ -36,6 +37,8 @@ export default function ProfileSettings() {
         <h3>{t("profile_settings")}</h3>
         <Form method="post" className="space-y-6 w-full">
           <h4>{t("password")}</h4>
+          <input type="hidden" name="action" value="update_password" />
+          <input type="hidden" name="id" value={data.user.id} />
           <div>
             <label htmlFor="current_password" className="block text-sm font-medium">
               {t("current_password")}
@@ -75,7 +78,10 @@ export default function ProfileSettings() {
               required
             />
           </div>
-          <button className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md">
+          <button
+            type="submit"
+            className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md"
+          >
             {t("change_password")}
           </button>
         </Form>
@@ -86,46 +92,36 @@ export default function ProfileSettings() {
         <div className="flex flex-col w-full gap-4">
           <PreferenceToggle
             label={t("new_posts")}
+            name="newPosts"
+            id={data.user.id.toString()}
             isEnabled={preferences.newPosts}
             onToggle={() => togglePreference("newPosts")}
           />
           <PreferenceToggle
             label={t("replies")}
+            name="replies"
+            id={data.user.id.toString()}
             isEnabled={preferences.replies}
             onToggle={() => togglePreference("replies")}
           />
           <PreferenceToggle
             label={t("marketing")}
+            name="marketing"
+            id={data.user.id.toString()}
             isEnabled={preferences.marketing}
             onToggle={() => togglePreference("marketing")}
           />
         </div>
 
         {/* Action Button */}
-        <button className="mt-6 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none">
-          {t("delete_profile")}
-        </button>
+        <Form method="post">
+          <input type="hidden" name="action" value="delete" />
+          <input type="hidden" name="id" value={data.user.id} />
+          <button type="submit" className="mt-6 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none">
+            {t("delete_profile")}
+          </button>
+        </Form>
       </div>
-    </div>
-  );
-}
-
-// Toggle Switch Component
-function PreferenceToggle({ label, isEnabled, onToggle }: PreferenceToggleProps) {
-  return (
-    <div className="flex justify-between items-center">
-      <span>{label}</span>
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`relative w-10 h-6 rounded-full transition-colors ${isEnabled ? "bg-blue-light" : "bg-gray-300"}`}
-      >
-        <span
-          className={`absolute left-0 top-0 w-6 h-6 bg-white rounded-full shadow transform transition-transform ${
-            isEnabled ? "translate-x-4" : ""
-          }`}
-        ></span>
-      </button>
     </div>
   );
 }

@@ -44,7 +44,10 @@ export async function registerUser({
         phone: phone,
         email: email.toLowerCase(),
         emailVerified: true,
-        password: passwordHash
+        password: passwordHash,
+        preferences: {
+          create: {}
+        }
       }
     });
   } catch (error) {
@@ -89,12 +92,14 @@ export async function registerEmployer({
   name,
   phone,
   email,
-  password
+  password,
+  industry
 }: {
   name: string;
   phone: string;
   email: string;
   password: string;
+  industry: string;
 }) {
   let company: {
     id: number;
@@ -104,6 +109,7 @@ export async function registerEmployer({
     email: string;
     emailVerified: boolean;
     password: string;
+    industry: string;
   } | null;
 
   try {
@@ -118,7 +124,11 @@ export async function registerEmployer({
         phone: phone,
         email: email.toLowerCase(),
         emailVerified: true,
-        password: passwordHash
+        password: passwordHash,
+        industry: industry,
+        preferences: {
+          create: {}
+        }
       }
     });
   } catch (error) {

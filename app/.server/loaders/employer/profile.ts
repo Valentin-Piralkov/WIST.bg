@@ -24,7 +24,8 @@ export async function l({ request, params }: LoaderFunctionArgs) {
       password: true
     },
     include: {
-      internships: true
+      internships: true,
+      preferences: true
     }
   });
 

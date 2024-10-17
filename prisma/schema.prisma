@@ -31,6 +31,8 @@ model User {
   activationTokens ActivationToken[]
   resetTokens      ResetToken[]
   savedInternships Internship[]
+  preferences      Preferences       @relation(fields: [preferencesId], references: [id])
+  preferencesId    String            @unique
 }
 
 model Company {
@@ -41,6 +43,7 @@ model Company {
   emailVerified           Boolean                  @default(false)
   phone                   String                   @unique
   password                String
+  industry                String
   description             String?
   logo                    String?
   website                 String?
@@ -49,6 +52,28 @@ model Company {
   internships             Internship[]
   companyResetTokens      CompanyResetToken[]
   companyActivationTokens CompanyActivationToken[]
+  preferences             EmployerPreferences      @relation(fields: [employerPreferencesId], references: [id])
+  employerPreferencesId   String                   @unique
+}
+
+model Preferences {
+  id        String   @id @default(cuid())
+  newPosts  Boolean  @default(true)
+  replies   Boolean  @default(true)
+  marketing Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User?    @relation
+}
+
+model EmployerPreferences {
+  id            String   @id @default(cuid())
+  newCandidates Boolean  @default(true)
+  payslips      Boolean  @default(true)
+  marketing     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  company       Company? @relation
 }
 
 model Section {

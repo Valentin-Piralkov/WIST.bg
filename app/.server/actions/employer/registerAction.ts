@@ -18,7 +18,8 @@ const registerSchema = z.object({
   email: z.string().email(),
   phone: z.string(),
   password: z.string().min(6),
-  repeat_password: z.string().min(6)
+  repeat_password: z.string().min(6),
+  industry: z.string()
 });
 
 export async function registerAction({ request }: ActionFunctionArgs) {
@@ -35,10 +36,10 @@ export async function registerAction({ request }: ActionFunctionArgs) {
     return redirect("/404");
   }
 
-  const { name, email, phone, password, repeat_password } = parsedData.data;
+  const { name, email, phone, password, repeat_password, industry } = parsedData.data;
 
   // check if all fields are filled
-  if (!name || !email || !phone || !password || !repeat_password) {
+  if (!name || !email || !phone || !password || !repeat_password || !industry) {
     return redirect(`/employer/register${finalURL}error=please_fill_all_fields`);
   }
 
@@ -71,7 +72,7 @@ export async function registerAction({ request }: ActionFunctionArgs) {
 
   // create company
   try {
-    const company = await registerEmployer({ name, phone, email, password });
+    const company = await registerEmployer({ name, phone, email, password, industry });
     if (company) {
       return createUserSession(
         company.id,

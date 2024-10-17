@@ -113,7 +113,7 @@ async function filters() {
   });
 
   await prisma.employerSection.createMany({
-    data: [{ label: "company_info" }, { label: "company_payment" }, { label: "settings" }]
+    data: [{ label: "company_info" }, { label: "settings" }]
   });
 
   await prisma.skill.createMany({
@@ -136,7 +136,15 @@ async function addDummyCompaniesAndInternships() {
       emailVerified: true,
       phone: "0888888888",
       password: "123456",
-      description: "BoxNow description"
+      industry: "Logistics",
+      description: "BoxNow description",
+      preferences: {
+        create: {
+          newCandidates: true,
+          payslips: true,
+          marketing: true
+        }
+      }
     }
   });
 
@@ -148,7 +156,15 @@ async function addDummyCompaniesAndInternships() {
       emailVerified: true,
       phone: "0888888887",
       password: "123456",
-      description: "Vivacom description"
+      industry: "Telecommunications",
+      description: "Vivacom description",
+      preferences: {
+        create: {
+          newCandidates: true,
+          payslips: true,
+          marketing: true
+        }
+      }
     }
   });
 
@@ -160,7 +176,15 @@ async function addDummyCompaniesAndInternships() {
       emailVerified: true,
       phone: "0888888886",
       password: "123456",
-      description: "Telerik description"
+      industry: "Education",
+      description: "Telerik description",
+      preferences: {
+        create: {
+          newCandidates: true,
+          payslips: true,
+          marketing: true
+        }
+      }
     }
   });
 
@@ -311,7 +335,14 @@ async function addDummyUsers() {
       password: "123456",
       phone: "0888888875",
       occupation: "Student",
-      linkedinProfile: "https://www.linkedin.com/in/nikolay-nikolov-1a2b3c4d5e6f"
+      linkedinProfile: "https://www.linkedin.com/in/nikolay-nikolov-1a2b3c4d5e6f",
+      preferences: {
+        create: {
+          newPosts: true,
+          replies: true,
+          marketing: true
+        }
+      }
     }
   });
 
@@ -324,7 +355,15 @@ async function addDummyUsers() {
       emailVerified: true,
       phone: "0888888876",
       password: "123456",
-      occupation: "Student"
+      occupation: "Student",
+      linkedinProfile: "https://www.linkedin.com/in/ivan-lozanov-1a2b3c4d5e6f",
+      preferences: {
+        create: {
+          newPosts: true,
+          replies: true,
+          marketing: true
+        }
+      }
     }
   });
 }

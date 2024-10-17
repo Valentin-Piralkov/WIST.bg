@@ -9,6 +9,7 @@ export default function EmployerRegistrationCard() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
+    industry: "",
     email: "",
     phone: "",
     password: "",
@@ -27,6 +28,7 @@ export default function EmployerRegistrationCard() {
   // Check if all fields are filled
   const isFormValid =
     formData.name !== "" &&
+    formData.industry !== "" &&
     formData.email !== "" &&
     formData.phone !== "" &&
     formData.password !== "" &&
@@ -60,6 +62,21 @@ export default function EmployerRegistrationCard() {
             value={formData.name}
             onChange={handleChange}
             placeholder={t("first_last_name_placeholder")}
+            className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="industry" className="block text-sm font-medium">
+            {t("industry")}
+          </label>
+          <input
+            type="text"
+            name="industry"
+            id="industry"
+            value={formData.industry}
+            onChange={handleChange}
+            placeholder={t("industry_placeholder")}
             className="mt-1 block w-full px-3 py-2 font-normal border border-gray-light rounded-md shadow-sm sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange focus:border-transparent"
             required
           />

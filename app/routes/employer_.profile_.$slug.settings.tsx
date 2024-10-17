@@ -1,7 +1,9 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, redirect, useLoaderData } from "@remix-run/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { employerSettingsAction } from "~/.server/actions/employer/profile/settingAction";
 import { l } from "~/.server/loaders/employer/profile";
+import { PreferenceToggle } from "~/components/elements/toggleButton";
 
 interface PreferencesState {
   newCandidates: boolean;
@@ -9,27 +11,33 @@ interface PreferencesState {
   marketing: boolean;
 }
 
-interface PreferenceToggleProps {
-  label: string;
-  isEnabled: boolean;
-  onToggle: () => void;
-}
-
 export const loader = l;
+export const action = employerSettingsAction;
 
 export default function EmployerProfileSettings() {
   const { t } = useTranslation();
   const data = useLoaderData<typeof l>();
 
   const [preferences, setPreferences] = useState({
-    newCandidates: true,
-    payslips: true,
-    marketing: true
+    newCandidates: data.company?.preferences?.newCandidates,
+    payslips: data.company?.preferences?.payslips,
+    marketing: data.company?.preferences?.marketing
   });
 
   const [emailData, setEmailData] = useState({
     email: data.company?.email || ""
   });
+
+  if (
+    !data ||
+    !data.company ||
+    !data.company.id ||
+    !data.company.preferences ||
+    !data.company.email ||
+    !data.company.internships
+  ) {
+    return redirect("/505");
+  }
 
   // Handler to update the form data as the user types
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +66,8 @@ export default function EmployerProfileSettings() {
         <Form method="post" className="space-y-6 w-full">
           <h4>{t("email")}</h4>
           <div>
+            <input type="hidden" name="action" value="update_email" />
+            <input type="hidden" name="id" value={data.company.id} />
             <label htmlFor="email" className="block text-sm font-medium">
               {t("email")}
             </label>
@@ -72,11 +82,16 @@ export default function EmployerProfileSettings() {
               required
             />
           </div>
-          <button className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md">
+          <button
+            type="submit"
+            className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md"
+          >
             {t("change_email")}
           </button>
         </Form>
         <Form method="post" className="space-y-6 w-full">
+          <input type="hidden" name="action" value="update_password" />
+          <input type="hidden" name="id" value={data.company.id} />
           <h4>{t("password")}</h4>
           <div>
             <label htmlFor="current_password" className="block text-sm font-medium">
@@ -117,7 +132,10 @@ export default function EmployerProfileSettings() {
               required
             />
           </div>
-          <button className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md">
+          <button
+            type="submit"
+            className="w-1/2 bg-blue-light text-white font-title font-medium text-xl px-4 py-2 rounded-md"
+          >
             {t("change_password")}
           </button>
         </Form>
@@ -129,45 +147,35 @@ export default function EmployerProfileSettings() {
           <PreferenceToggle
             label={t("new_candidates")}
             isEnabled={preferences.newCandidates}
+            name="newCandidates"
+            id={data.company.id.toString()}
             onToggle={() => togglePreference("newCandidates")}
           />
           <PreferenceToggle
             label={t("payslips")}
             isEnabled={preferences.payslips}
+            name="payslips"
+            id={data.company.id.toString()}
             onToggle={() => togglePreference("payslips")}
           />
           <PreferenceToggle
             label={t("marketing")}
             isEnabled={preferences.marketing}
+            name="marketing"
+            id={data.company.id.toString()}
             onToggle={() => togglePreference("marketing")}
           />
         </div>
 
-        {/* Action Button */}
-        <button className="mt-6 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none">
-          {t("delete_profile")}
-        </button>
+        {/* Delete Profile Button */}
+        <Form method="post">
+          <input type="hidden" name="action" value="delete" />
+          <input type="hidden" name="id" value={data.company.id} />
+          <button type="submit" className="mt-6 px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none">
+            {t("delete_profile")}
+          </button>
+        </Form>
       </div>
-    </div>
-  );
-}
-
-// Toggle Switch Component
-function PreferenceToggle({ label, isEnabled, onToggle }: PreferenceToggleProps) {
-  return (
-    <div className="flex justify-between items-center">
-      <span>{label}</span>
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`relative w-10 h-6 rounded-full transition-colors ${isEnabled ? "bg-blue-light" : "bg-gray-300"}`}
-      >
-        <span
-          className={`absolute left-0 top-0 w-6 h-6 bg-white rounded-full shadow transform transition-transform ${
-            isEnabled ? "translate-x-4" : ""
-          }`}
-        ></span>
-      </button>
     </div>
   );
 }
